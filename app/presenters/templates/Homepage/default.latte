@@ -1,0 +1,6 @@
+
+{block content}
+{if !$user->isLoggedIn()}
+        {control signInForm}
+{/if}
+{/block}

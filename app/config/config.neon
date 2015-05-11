@@ -1,0 +1,39 @@
+#
+# WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+# http://nette.org/security-warning
+#
+parameters:
+
+
+php:
+    date.timezone: Europe/Prague
+
+
+application:
+    errorPresenter: Error
+    mapping:
+        *: App\*Module\Presenters\*Presenter
+
+#common:
+#    nette:
+#        latte:
+#            macros:
+#                - Nextras\Forms\Bridges\Latte\Macros\BS3InputMacros
+
+session:
+    expiration: 14 days
+
+
+services:
+    - App\Model\MessageCreator
+    - App\Forms\SignFormFactory
+    - App\Forms\MessageCreationFormFactory
+    router: App\RouterFactory::createRouter
+    - App\Model\Authorizator
+
+extensions:
+    console: Kdyby\Console\DI\ConsoleExtension
+    events: Kdyby\Events\DI\EventsExtension
+    annotations: Kdyby\Annotations\DI\AnnotationsExtension
+    doctrine: Kdyby\Doctrine\DI\OrmExtension
+    nextrasforms: Nextras\Forms\DI\FormsExtension
